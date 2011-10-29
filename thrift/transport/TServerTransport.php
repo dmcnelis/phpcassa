@@ -44,7 +44,7 @@ abstract class TServerTransport {
     if ($transport == null) {
       throw new TTransportException("accept() may not return NULL");
     }
-    
+
     return $transport;
   }
 }

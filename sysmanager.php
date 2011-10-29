@@ -451,13 +451,13 @@ class SystemManager {
      * @param string $column the name of the column to drop the index from
      */
     public function drop_index($keyspace, $column_family, $column) {
-        $matched = false;       
+        $matched = false;
         $this->client->set_keyspace($keyspace);
-        $cfdef = $this->get_cfdef($keyspace, $column_family);       
+        $cfdef = $this->get_cfdef($keyspace, $column_family);
         $col_metas = $cfdef->column_metadata;
 
         for ($i = 0; $i < count($col_metas); $i++) {
-            $col_meta = $col_metas[$i];           
+            $col_meta = $col_metas[$i];
             if ($col_meta->name == $column) {
                 $col_meta->index_type = NULL;
                 $col_meta->index_name = NULL;
@@ -474,7 +474,7 @@ class SystemManager {
     }
 
     /**
-     * Describes the Cassandra cluster. 
+     * Describes the Cassandra cluster.
      *
      * @return array the node to token mapping
      */

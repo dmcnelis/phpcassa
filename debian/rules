@@ -21,7 +21,7 @@ THRIFT_DETRITUS =   \
     build
 
 %:
-	dh $@ 
+	dh $@
 
 override_dh_auto_configure:
 	cd $(THRIFTDIR) && phpize

@@ -274,7 +274,7 @@ class TestColumnFamily extends UnitTestCase {
         self::assertEqual($count, 201);
 
 
- 
+
         # Row count above total number of rows, buffer_size = total number of rows
         $cf = new ColumnFamily($this->pool, 'Standard1', true, true,
                                $read_consistency_level=$cl, $write_consistency_level=$cl,
@@ -286,8 +286,8 @@ class TestColumnFamily extends UnitTestCase {
             $count++;
         }
         self::assertEqual($count, 201);
- 
- 
+
+
         # Row count above total number of rows, buffer_size = total number of rows
         $cf = new ColumnFamily($this->pool, 'Standard1', true, true,
                                $read_consistency_level=$cl, $write_consistency_level=$cl,
@@ -299,7 +299,7 @@ class TestColumnFamily extends UnitTestCase {
             $count++;
         }
         self::assertEqual($count, 201);
-     
+
 
         $cf->truncate();
     }
@@ -420,7 +420,7 @@ class TestColumnFamily extends UnitTestCase {
         self::assertEqual($count, 201);
 
 
- 
+
         # Row count above total number of rows, buffer_size = total number of rows
         $cf = new ColumnFamily($this->pool, 'Indexed1', true, true,
                                $read_consistency_level=$cl, $write_consistency_level=$cl,
@@ -432,8 +432,8 @@ class TestColumnFamily extends UnitTestCase {
             $count++;
         }
         self::assertEqual($count, 201);
- 
- 
+
+
         # Row count above total number of rows, buffer_size = total number of rows
         $cf = new ColumnFamily($this->pool, 'Indexed1', true, true,
                                $read_consistency_level=$cl, $write_consistency_level=$cl,
@@ -476,7 +476,7 @@ class TestColumnFamily extends UnitTestCase {
         # Insert and remove a matching row at the end
         $indexed_cf->insert('key4', $columns);
         $indexed_cf->remove('key4');
-        # Remove a matching row from the middle 
+        # Remove a matching row from the middle
         $indexed_cf->remove('key2');
 
         $result = $indexed_cf->get_indexed_slices($clause);
