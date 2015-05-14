@@ -69,7 +69,7 @@ class TestAutopacking extends UnitTestCase {
         $cfattrs["comparator_type"] = DataType::UTF8_TYPE;
         $this->sys->create_column_family(self::$KS, 'SuperUTF8', $cfattrs);
 
-        
+
 
         $cfattrs = array("column_type" => "Super", "comparator_type" => DataType::LONG_TYPE);
 
@@ -123,7 +123,7 @@ class TestAutopacking extends UnitTestCase {
         // Quick way to create a TimeUUIDType validator to subcol
         $this->sys->create_index(self::$KS, 'DefaultValidator', 'subcol',
             DataType::TIME_UUID_TYPE, NULL, NULL);
-         
+
         $this->client = new ConnectionPool(self::$KS);
         $this->cf_long  = new ColumnFamily($this->client, 'StdLong');
         $this->cf_int   = new ColumnFamily($this->client, 'StdInteger');
@@ -308,7 +308,7 @@ class TestAutopacking extends UnitTestCase {
         $ascii_cols = array('aaaa', 'bbbb', 'cccc');
         $type_groups[] = self::make_group($this->cf_ascii, $ascii_cols);
 
-        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;"); 
+        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;");
         $type_groups[] = self::make_group($this->cf_utf8, $utf8_cols);
 
 
@@ -357,7 +357,7 @@ class TestAutopacking extends UnitTestCase {
             ### multiget() tests ###
 
             $result = $group['cf']->multiget(self::$KEYS);
-            foreach(range(0,2) as $i)            
+            foreach(range(0,2) as $i)
                 self::assertEqual($result[self::$KEYS[0]], $group['dict']);
 
             $result = $group['cf']->multiget(array(self::$KEYS[2]));
@@ -442,7 +442,7 @@ class TestAutopacking extends UnitTestCase {
         $ascii_cols = array('aaaa', 'bbbb', 'cccc');
         $type_groups[] = self::make_super_group($this->cf_supascii, $ascii_cols);
 
-        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;"); 
+        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;");
         $type_groups[] = self::make_super_group($this->cf_suputf8, $utf8_cols);
 
         foreach($type_groups as $group) {
@@ -490,7 +490,7 @@ class TestAutopacking extends UnitTestCase {
             ### multiget() tests ###
 
             $result = $group['cf']->multiget(self::$KEYS);
-            foreach(range(0,2) as $i)            
+            foreach(range(0,2) as $i)
                 self::assertEqual($result[self::$KEYS[0]], $group['dict']);
 
             $result = $group['cf']->multiget(array(self::$KEYS[2]));
@@ -577,7 +577,7 @@ class TestAutopacking extends UnitTestCase {
         $ascii_cols = array('aaaa', 'bbbb', 'cccc');
         $type_groups[] = self::make_sub_group($this->cf_suplong_subascii, $ascii_cols);
 
-        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;"); 
+        $utf8_cols = array("a&#1047;", "b&#1048;", "c&#1049;");
         $type_groups[] = self::make_sub_group($this->cf_suplong_subutf8, $utf8_cols);
 
 
@@ -611,7 +611,7 @@ class TestAutopacking extends UnitTestCase {
             ### multiget() tests ###
 
             $result = $group['cf']->multiget(self::$KEYS);
-            foreach(range(0,2) as $i)            
+            foreach(range(0,2) as $i)
                 self::assertEqual($result[self::$KEYS[0]], $group['dict']);
 
             $result = $group['cf']->multiget(array(self::$KEYS[2]));
@@ -726,7 +726,7 @@ class TestAutopacking extends UnitTestCase {
 
     public function test_uuid1_generation() {
         $micros = 1293769171436849;
-        $uuid = CassandraUtil::import(CassandraUtil::uuid1(null, $micros)); 
+        $uuid = CassandraUtil::import(CassandraUtil::uuid1(null, $micros));
         $t = (int)($uuid->time * 1000000);
         self::assertWithinMargin($micros, $t, 100);
     }

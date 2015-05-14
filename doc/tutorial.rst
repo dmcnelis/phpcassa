@@ -17,7 +17,7 @@ should execute without raising an exception:
 
 This tutorial also assumes that a Cassandra instance is running on the
 default host and port. Read the `instructions for getting started
-with Cassandra <http://wiki.apache.org/cassandra/GettingStarted>`_. 
+with Cassandra <http://wiki.apache.org/cassandra/GettingStarted>`_.
 You can start Cassandra like so:
 
 .. code-block:: bash
@@ -37,7 +37,7 @@ for this tutorial:
 
 .. code-block:: none
 
-    user@~ $ cassandra-cli 
+    user@~ $ cassandra-cli
     Welcome to cassandra CLI.
 
     Type 'help;' or '?' for help. Type 'quit;' or 'exit;' to quit.
@@ -174,7 +174,7 @@ some rows with keys 'row_key1' through 'row_key9', we can do this:
       Print_r($columns);
   }
 
-It's also possible to specify a set of columns or a slice for 
+It's also possible to specify a set of columns or a slice for
 `ColumnFamily::multiget() <api/phpcassa/columnfamily/ColumnFamily#multiget>`_
 and
 `ColumnFamily::get_range() <api/phpcassa/columnfamily/ColumnFamily#get_range>`_,
@@ -368,13 +368,13 @@ will be indexed.  In a ``cassandra.yaml`` file, this might look like:
         validator_class: LongType
         index_type: KEYS
 
-In order to use 
+In order to use
 `ColumnFamily::get_indexed_slices() <api/phpcassa/columnfamily/ColumnFamily#get_indexed_slices>`_
-to get data from Indexed1 using the indexed column, we need to create an 
+to get data from Indexed1 using the indexed column, we need to create an
 `IndexClause <http://thobbs.github.com/phpcassa/api/phpcassa/cassandra_IndexClause.html>`_
 which contains a list of
 `IndexExpression <http://thobbs.github.com/phpcassa/api/phpcassa/cassandra_IndexExpression.html>`_
-objects.  The functions 
+objects.  The functions
 `CassandraUtil::create_index_expression() <api/phpcassa/columnfamily/CassandraUtil#create_index_expression>`_
 and
 `CassandraUtil::create_index_clause() <api/phpcassa/columnfamily/CassandraUtil#create_index_clause>`_
@@ -397,7 +397,7 @@ the following:
       Print_r($columns)
   }
 
-Although at least one 
+Although at least one
 `IndexExpression <http://thobbs.github.com/phpcassa/api/phpcassa/cassandra_IndexExpression.html>`_
 in every clause must be on an indexed column, you may also have other expressions
 which are on non-indexed columns.

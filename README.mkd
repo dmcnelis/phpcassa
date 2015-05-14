@@ -38,7 +38,7 @@ Inserting
 Querying
 --------
 
-    $users->get('key'); 
+    $users->get('key');
     $users->multiget(array('key1', 'key2'));
 
 Removing

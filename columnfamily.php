@@ -20,7 +20,7 @@ class CassandraUtil {
 
     /**
      * Generate a v1 UUID (timestamp based)
-     * @return string a byte[] representation of a UUID 
+     * @return string a byte[] representation of a UUID
      * @param string $node what to use for the MAC portion of the UUID.  This will be generated
      *        randomly if left as NULL
      * @param int $time timestamp to use for the UUID.  This should be a number of microseconds
@@ -33,7 +33,7 @@ class CassandraUtil {
 
     /**
      * Generate a v3 UUID
-     * @return string a byte[] representation of a UUID 
+     * @return string a byte[] representation of a UUID
      */
     static public function uuid3($node=null, $namespace=null) {
         $uuid = UUID::mint(3, $node, $namespace);
@@ -42,7 +42,7 @@ class CassandraUtil {
 
     /**
      * Generate a v4 UUID
-     * @return string a byte[] representation of a UUID 
+     * @return string a byte[] representation of a UUID
      */
     static public function uuid4() {
         $uuid = UUID::mint(4);
@@ -51,7 +51,7 @@ class CassandraUtil {
 
     /**
      * Generate a v5 UUID
-     * @return string a byte[] representation of a UUID 
+     * @return string a byte[] representation of a UUID
      */
     static public function uuid5($node, $namespace=null) {
         $uuid = UUID::mint(5, $node, $namespace);
@@ -149,7 +149,7 @@ class ColumnFamily {
      * replaced by an array of the form array(column_value, column_timestamp). */
     public $include_timestamp = false;
 
-    /** 
+    /**
      * @var int When calling `get_range`, the intermediate results need
      *       to be buffered if we are fetching many rows, otherwise the Cassandra
      *       server will overallocate memory and fail.  This is the size of
@@ -162,7 +162,7 @@ class ColumnFamily {
      *
      * @param Connection $connection the connection to use for this ColumnFamily
      * @param string $column_family the name of the column family in Cassandra
-     * @param bool $autopack_names whether or not to automatically convert column names 
+     * @param bool $autopack_names whether or not to automatically convert column names
      *        to and from their binary representation in Cassandra
      *        based on their comparator type
      * @param bool $autopack_values whether or not to automatically convert column values
@@ -211,7 +211,7 @@ class ColumnFamily {
         $this->key_type = 'BytesType';
         $this->col_type_dict = array();
 
-        $this->is_super = $this->cfdef->column_type === 'Super';       
+        $this->is_super = $this->cfdef->column_type === 'Super';
         $this->set_autopack_names($autopack_names);
         $this->set_autopack_values($autopack_values);
         $this->set_autopack_keys(true);
@@ -627,7 +627,7 @@ class ColumnFamily {
      */
     public function add($key, $column, $value=1, $super_column=null,
                         $write_consistency_level=null) {
-        
+
         $cp = $this->create_column_parent($super_column);
         $packed_key = $this->pack_key($key);
         $counter = new cassandra_CounterColumn();
@@ -707,7 +707,7 @@ class ColumnFamily {
         $mutation = new cassandra_Mutation();
         $mutation->deletion = $deletion;
 
-        $mut_map = array($packed_key => array($this->column_family => array($mutation))); 
+        $mut_map = array($packed_key => array($this->column_family => array($mutation)));
 
         return $this->pool->call("batch_mutate", $mut_map, $this->wcl($write_consistency_level));
     }
@@ -767,7 +767,7 @@ class ColumnFamily {
         $index = strrpos($type_string, '.');
         if ($index == false)
             return 'BytesType';
-        
+
         $type = substr($type_string, $index + 1);
         if (!isset(self::$TYPES[$type]))
             return 'BytesType';
@@ -871,8 +871,8 @@ class ColumnFamily {
     private function get_data_type_for_col($col_name) {
 		if (isset($this->col_type_dict[$col_name]))
 			return $this->col_type_dict[$col_name];
-		else 
-			return $this->cf_data_type;            
+		else
+			return $this->cf_data_type;
     }
 
     private function pack_value($value, $col_name) {
@@ -894,8 +894,8 @@ class ColumnFamily {
             if($v > 0) { $out_str .= chr($v); }
         return $out_str;
     }
-   
-    private static function pack_str($str, $len) {       
+
+    private static function pack_str($str, $len) {
         $out_str = "";
         for($i=0; $i<$len; $i++)
             $out_str .= pack("c", ord(substr($str, $i, 1)));
@@ -1013,7 +1013,7 @@ class ColumnFamily {
         else
             return $value;
     }
-            
+
     private function unpack($value, $data_type) {
         if ($data_type == 'LongType')
             return self::unpack_long($value);
@@ -1121,7 +1121,7 @@ class ColumnFamily {
         }
         return $ret;
     }
-    
+
     private function array_to_supercolumns_or_columns($array, $timestamp=null, $ttl=null) {
         if(empty($timestamp)) $timestamp = CassandraUtil::get_time();
 
@@ -1275,7 +1275,7 @@ class ColumnFamilyIterator implements Iterator {
         {
             # We've reached the end of this page, but there should be more
             # in the CF
-            
+
             # Get the next buffer (next_start_key has already been set)
             $this->get_buffer();
 

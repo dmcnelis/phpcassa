@@ -90,7 +90,7 @@ class TServerSocket extends TServerTransport {
 
     $socket = new TSocket();
     $socket->setHandle($handle);
-    
+
     return $socket;
   }
 }

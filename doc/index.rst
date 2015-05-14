@@ -53,7 +53,7 @@ About This Documentation
 ------------------------
 This documentation is generated using the `Sphinx
 <http://sphinx.pocoo.org/>`_ documentation generator. The source files
-for the documentation are located in the `doc/` directory of 
+for the documentation are located in the `doc/` directory of
 **phpcassa**. To generate the documentation, run the
 following command from the `doc` directory:
 
